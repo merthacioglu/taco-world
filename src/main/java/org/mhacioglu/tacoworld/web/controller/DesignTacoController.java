@@ -1,11 +1,13 @@
 package org.mhacioglu.tacoworld.web.controller;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.mhacioglu.tacoworld.web.model.Ingredient;
 import org.mhacioglu.tacoworld.web.model.Taco;
 import org.mhacioglu.tacoworld.web.model.TacoOrder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -65,8 +67,12 @@ public class DesignTacoController {
     }
 
     @PostMapping
-    public String processTaco(Taco taco,
+    public String processTaco(@Valid  Taco taco,
+                              Errors errors,
                               @ModelAttribute TacoOrder tacoOrder) {
+        if (errors.hasErrors()) {
+            return "design";
+        }
         tacoOrder.addTaco(taco);
         log.info("Processing taco: {}", taco);
         return "redirect:/orders/current";
