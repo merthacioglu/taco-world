@@ -1,13 +1,22 @@
-package org.mhacioglu.tacoworld.web.model;
+package org.mhacioglu.tacoworld.model;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
+import java.util.Date;
 import java.util.List;
 
+@Table
 @Data
 public class Taco {
+    @Id
+    private Long id;
+
+    private Date createdAt = new Date();
+
     @NotNull
     @Size(min=5, message="Name must be at least 5 characters long")
     private String name;

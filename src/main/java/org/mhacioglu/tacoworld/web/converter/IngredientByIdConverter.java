@@ -1,8 +1,8 @@
 package org.mhacioglu.tacoworld.web.converter;
 
 import lombok.NonNull;
-import org.mhacioglu.tacoworld.web.model.Ingredient;
-import org.mhacioglu.tacoworld.web.model.Ingredient.Type;
+import org.mhacioglu.tacoworld.model.Ingredient;
+import org.mhacioglu.tacoworld.model.Ingredient.Type;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +16,7 @@ public class IngredientByIdConverter implements Converter<String, Ingredient> {
 
 
     public IngredientByIdConverter()  {
-        ingredientMap.put("FLTO",
+        ingredientMap.put("FATO",
                 new Ingredient("FLTO", "Flour Tortilla", Type.WRAP));
         ingredientMap.put("COTO",
                 new Ingredient("COTO", "Corn Tortilla", Type.WRAP));
