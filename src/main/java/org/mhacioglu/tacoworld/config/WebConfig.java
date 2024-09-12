@@ -1,4 +1,4 @@
-package org.mhacioglu.tacoworld.web.config;
+package org.mhacioglu.tacoworld.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;

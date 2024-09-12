@@ -1,4 +1,4 @@
-package org.mhacioglu.tacoworld.web.controller;
+package org.mhacioglu.tacoworld.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

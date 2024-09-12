@@ -1,8 +1,8 @@
-package org.mhacioglu.tacoworld.web.converter;
+package org.mhacioglu.tacoworld.converter;
 
 import lombok.NonNull;
-import org.mhacioglu.tacoworld.web.model.Ingredient;
-import org.mhacioglu.tacoworld.web.model.Ingredient.Type;
+import org.mhacioglu.tacoworld.model.Ingredient;
+import org.mhacioglu.tacoworld.model.Ingredient.Type;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
