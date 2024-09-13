@@ -5,7 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.mhacioglu.tacoworld.model.Ingredient;
 import org.mhacioglu.tacoworld.model.Taco;
 import org.mhacioglu.tacoworld.model.TacoOrder;
+import org.mhacioglu.tacoworld.model.TacoUDT;
 import org.mhacioglu.tacoworld.repository.IngredientRepository;
+import org.mhacioglu.tacoworld.util.TacoUDRUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -31,7 +33,7 @@ public class DesignTacoController {
     @ModelAttribute
     public void addIngredientsToModel(Model model) {
         List<Ingredient> ingredients = new ArrayList<>();
-        ingredientRepository.findAll().forEach(ingredient -> ingredients.add(ingredient));
+        ingredientRepository.findAll().forEach(ingredients::add);
 
         Ingredient.Type[] types = Ingredient.Type.values();
         for (Ingredient.Type type :  types) {
@@ -71,7 +73,7 @@ public class DesignTacoController {
         if (errors.hasErrors()) {
             return "design";
         }
-        tacoOrder.addTaco(taco);
+        tacoOrder.addTaco(TacoUDRUtils.toTacoUDT(taco));
         log.info("Processing taco: {}", taco);
         return "redirect:/orders/current";
     }
