@@ -1,13 +1,9 @@
 spring:
   application:
     name: taco-world
-  datasource:
-    generate-unique-name: false
-    name: taco-world
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: password
-  h2:
-    console:
-      enabled: true
+  data:
+    mongodb:
+      port: 27017
+      username: tacoworld
+      password: m3rth4c10qlu
+      database: tacoworlddb
