@@ -7,13 +7,19 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Data
 @Entity
-public class TacoOrder {
+public class TacoOrder  implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -40,6 +46,9 @@ public class TacoOrder {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Taco> tacos = new ArrayList<>();
+
+    @ManyToOne
+    private Users user;
 
     public void addTaco(Taco taco){
         tacos.add(taco);

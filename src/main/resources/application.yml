@@ -11,3 +11,11 @@ spring:
   h2:
     console:
       enabled: true
+  security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            client-id: 974228714506971
+            client-secret: 4b02f459f5cb6bd3f7ad24f615b608fd
+            scope: email, public_profile
