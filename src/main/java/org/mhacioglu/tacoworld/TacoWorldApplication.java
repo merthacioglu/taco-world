@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 
 @SpringBootApplication
 public class TacoWorldApplication {
@@ -15,6 +16,7 @@ public class TacoWorldApplication {
         SpringApplication.run(TacoWorldApplication.class, args);
     }
 
+    @Profile({"dev", "qa"})
     @Bean
     public CommandLineRunner dataLoader(IngredientRepository repo) {
         return args -> {
