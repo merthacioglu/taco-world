@@ -52,12 +52,17 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authz) -> authz
+                        .requestMatchers(HttpMethod.POST, "api/ingredints").hasAuthority("SCOPE_writeIngredients")
+                        .requestMatchers(HttpMethod.DELETE, "api/ingredients").hasAuthority("SCOPE_deleteIngredients")
+                        .requestMatchers(HttpMethod.POST, "/ingredients").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/ingredients/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/admin'**")
                         .access(new WebExpressionAuthorizationManager("hasRole('ADMIN')"))
                         .requestMatchers("/design", "/orders")
                         .access(new WebExpressionAuthorizationManager("hasRole('USER')"))
                         .requestMatchers("/", "/**")
                         .access(new WebExpressionAuthorizationManager("permitAll()"))
+
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
@@ -75,6 +80,10 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/design")
                         .permitAll()
                 )
+                .oauth2ResourceServer(oauth2 -> oauth2
+                        .jwt(jwtConfigurer -> {
+
+                        }))
                 .logout(lout -> lout
                         .logoutSuccessUrl("/login")
                         .logoutUrl("/logout"));

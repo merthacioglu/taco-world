@@ -19,14 +19,16 @@ spring:
             client-id: 974228714506971
             client-secret: 4b02f459f5cb6bd3f7ad24f615b608fd
             scope: email, public_profile
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:9000/oauth2/jwks
 logging:
 #  file:
 #    path: /var/logs/
 #    name: TacoWorld.log
   level:
     tacos: WARN
-greeting:
-  welcome: You are using ${spring.application.name}
+
 taco:
   orders:
     page-size: 10
