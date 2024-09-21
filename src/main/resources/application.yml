@@ -1,5 +1,4 @@
 spring:
-
   profiles:
     active: dev
   application:
@@ -22,6 +21,10 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: http://localhost:9000/oauth2/jwks
+  rabbitmq:
+    template:
+      exchange: tacoworld.order
+      routing-key: kitchens.central
 logging:
 #  file:
 #    path: /var/logs/
