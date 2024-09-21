@@ -37,7 +37,7 @@ public class JmsOrderMessagingService implements OrderMessagingService {
     }*/
     @Override
     public void convertAndSendOrder(TacoOrder order) {
-        jmsTemplate.convertAndSend("tacocloud.order.queue", order,
+        jmsTemplate.convertAndSend("tacoworldorder.queue", order,
                 this::addOrderSource);
     }
 
