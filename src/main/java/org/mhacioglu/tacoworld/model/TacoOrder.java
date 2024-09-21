@@ -1,5 +1,6 @@
 package org.mhacioglu.tacoworld.model;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
@@ -15,6 +16,11 @@ import java.util.List;
 
 @Data
 @Entity
+//@JsonTypeInfo(
+//        use = JsonTypeInfo.Id.NAME,
+//        include = JsonTypeInfo.As.PROPERTY,
+//        property = "_typeId"
+//)
 public class TacoOrder  implements Serializable {
 
     @Serial

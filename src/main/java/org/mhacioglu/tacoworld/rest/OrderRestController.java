@@ -1,5 +1,8 @@
 package org.mhacioglu.tacoworld.rest;
 
+import jakarta.jms.JMSException;
+import jakarta.jms.Message;
+import org.mhacioglu.tacoworld.messaging.OrderMessagingService;
 import org.mhacioglu.tacoworld.model.TacoOrder;
 import org.mhacioglu.tacoworld.repository.OrderRepository;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -13,9 +16,19 @@ import org.springframework.web.bind.annotation.*;
 
 public class OrderRestController {
     private final OrderRepository orderRepository;
+    private final OrderMessagingService messagingService;
+    public OrderRestController(OrderRepository orderRepository,
+                               OrderMessagingService messagingService) {
 
-    public OrderRestController(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
+        this.messagingService = messagingService;
+    }
+
+    @PostMapping(consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public TacoOrder postOrder(@RequestBody TacoOrder order) {
+        messagingService.sendOrder(order);
+        return orderRepository.save(order);
     }
 
     @PutMapping(path = "/{orderId}", consumes = "application/json")
@@ -71,4 +84,5 @@ public class OrderRestController {
             e.printStackTrace();
         }
     }
+
 }
