@@ -22,6 +22,14 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: http://localhost:9000/oauth2/jwks
+  kafka:
+    producer:
+      bootstrap-servers:
+        - localhost:9092
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+
 logging:
 #  file:
 #    path: /var/logs/
